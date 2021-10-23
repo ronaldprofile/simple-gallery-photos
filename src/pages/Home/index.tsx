@@ -11,14 +11,17 @@ import { Container, Grid, Warning } from "./styles";
 
 export function Home() {
   const [photos, setPhotos] = useState<IPhoto[]>([]);
-  const [uploading, setUploading] = useState(false);
+  const [animationLoadingIsActive, setAnimationLoadingIsActive] =
+    useState(false);
 
   useEffect(() => {
     getPhotos();
   }, []);
 
   async function getPhotos() {
+    setAnimationLoadingIsActive(true);
     setPhotos(await getAllPhotos());
+    setAnimationLoadingIsActive(false);
   }
 
   async function handleFormSubmit(event: FormEvent<HTMLFormElement>) {
@@ -28,31 +31,30 @@ export function Home() {
     const file = formData.get("photo") as File;
 
     if (file && file.size > 0) {
-      setUploading(true);
+      setAnimationLoadingIsActive(true);
       const result = await sendFile(file);
-      setUploading(false);
+      setAnimationLoadingIsActive(false);
 
       if (result instanceof Error) {
-        alert(`${result.name} - ${result.message}`);
+        alert(`${result.message}`);
         return;
-      } else {
-        setPhotos([...photos, result!]);
-        getPhotos();
       }
+
+      setPhotos([...photos, result!]);
+      getPhotos();
     }
   }
 
   async function handleDeletePhoto(name: string) {
-    setUploading(true);
+    setAnimationLoadingIsActive(true);
     await deletePhoto(name);
-    setUploading(false);
+    setAnimationLoadingIsActive(false);
     getPhotos();
   }
 
   return (
     <Container>
       <h1>Minhas fotos</h1>
-
       <form onSubmit={handleFormSubmit}>
         <div>
           <label htmlFor="photo">
@@ -66,18 +68,17 @@ export function Home() {
           </Button>
         </div>
 
-        {uploading && <Spinner />}
+        {animationLoadingIsActive && <Spinner />}
       </form>
 
       {photos.length > 0 && (
         <Grid>
           {photos.map(photo => {
-            return <Photo key={photo.url} {...{ photo, handleDeletePhoto }} />;
+            return <Photo key={photo.name} {...{ photo, handleDeletePhoto }} />;
           })}
         </Grid>
       )}
-
-      {!uploading && photos.length === 0 && (
+      {!animationLoadingIsActive && photos.length === 0 && (
         <Warning>
           <h2>Opps! Não temos nenhuma foto por aqui...</h2>
           <p>comece adicionado sua primeira foto</p>
