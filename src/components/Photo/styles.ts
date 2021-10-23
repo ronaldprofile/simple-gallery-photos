@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Container = styled.div`
-  max-width: 14.375rem;
+  max-width: 18.31rem;
   height: 100%;
   overflow: hidden;
 
@@ -21,16 +21,6 @@ export const Container = styled.div`
 
     &:hover {
       transform: translateY(-0.187rem);
-    }
-  }
-
-  button {
-    padding: 0.875rem;
-    background-color: #df2e2e;
-    color: #ffffff;
-    transition: filter 0.2s;
-    &:hover {
-      filter: brightness(1.1);
     }
   }
 `;
