@@ -1,6 +1,6 @@
 <h1 align="center">Gallery Photos</h1>
 
-<img src="https://ik.imagekit.io/gczsuhmv3/avanz/gallery-photos_aspPaYOtney.png?updatedAt=1634954515597" alt="screenshot">
+<img src="https://ik.imagekit.io/gczsuhmv3/avanz/screenshot-rocks_aMnIpE5M2L.png?updatedAt=1635007260610" alt="screenshot">
 
 ## 💻 Projeto
 
