@@ -1,11 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
-const animationLoading = keyframes`
-  to { transform: rotate(360deg) }
-`;
-
 export const Container = styled.div`
-  width: min(90vw, 57.5rem);
+  width: min(90vw, 58.437rem);
   padding: 2rem 0;
   margin: 0 auto;
 
@@ -52,19 +48,6 @@ export const Container = styled.div`
           display: none;
         }
       }
-
-      button {
-        width: 11.25rem;
-        padding: 0.875rem;
-        font-weight: 700;
-        background-color: #8257e5;
-        color: #ffffff;
-        transition: filter 0.2s;
-
-        &:hover {
-          filter: brightness(1.1);
-        }
-      }
     }
 
     .result {
@@ -74,15 +57,6 @@ export const Container = styled.div`
       span {
         font-size: 1.125rem;
         color: #ffffff;
-      }
-
-      .animation-loading {
-        width: 3.125rem;
-        height: 3.125rem;
-        border: 0.187rem solid rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        border-top-color: #fff;
-        animation: ${animationLoading} 1s ease-in-out infinite;
       }
     }
 
@@ -103,11 +77,18 @@ export const Grid = styled.div`
   margin-top: 4rem;
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 `;
 
 export const Warning = styled.div`
+  margin-top: 2rem;
+
+  opacity: 0.8;
   color: #ffffff;
   text-align: center;
+
+  p {
+    font-size: 1.125rem;
+  }
 `;

@@ -1,5 +1,8 @@
 import { FormEvent, useEffect, useState } from "react";
+import { Button } from "../../components/Button";
 import { Photo } from "../../components/Photo";
+import { Spinner } from "../../components/Spinner";
+import { MdFileUpload } from "react-icons/md";
 
 import { deletePhoto, getAllPhotos, sendFile } from "../../services/photos";
 import { IPhoto } from "../../types/Photo";
@@ -31,6 +34,7 @@ export function Home() {
 
       if (result instanceof Error) {
         alert(`${result.name} - ${result.message}`);
+        return;
       } else {
         setPhotos([...photos, result!]);
         getPhotos();
@@ -39,13 +43,15 @@ export function Home() {
   }
 
   async function handleDeletePhoto(name: string) {
+    setUploading(true);
     await deletePhoto(name);
+    setUploading(false);
     getPhotos();
   }
 
   return (
     <Container>
-      <h1>Gallery photos</h1>
+      <h1>Minhas fotos</h1>
 
       <form onSubmit={handleFormSubmit}>
         <div>
@@ -54,15 +60,13 @@ export function Home() {
             Escolher foto
           </label>
 
-          <button>Enviar</button>
+          <Button background="#8257e5" color="#ffffff">
+            <MdFileUpload size={24} />
+            Enviar
+          </Button>
         </div>
 
-        {uploading && (
-          <div className="result">
-            <span>Enviando foto...</span>
-            <div className="animation-loading"></div>
-          </div>
-        )}
+        {uploading && <Spinner />}
       </form>
 
       {photos.length > 0 && (
@@ -73,7 +77,7 @@ export function Home() {
         </Grid>
       )}
 
-      {photos.length === 0 && (
+      {!uploading && photos.length === 0 && (
         <Warning>
           <h2>Opps! Não temos nenhuma foto por aqui...</h2>
           <p>comece adicionado sua primeira foto</p>
