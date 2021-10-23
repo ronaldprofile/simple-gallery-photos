@@ -38,8 +38,7 @@ export async function sendFile(file: File) {
     const photoUrl = await getDownloadURL(upload.ref);
     return { name: upload.ref.name, url: photoUrl } as IPhoto;
   } else {
-    alert("Tipo de arquivo não suportado");
-    return;
+    return new Error("Tipo de arquivo não suportado");
   }
 }
 
