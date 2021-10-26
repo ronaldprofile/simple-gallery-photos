@@ -16,11 +16,7 @@ export const Container = styled.div`
     padding: 2rem;
     background-color: #121214;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    div:first-child {
+    > div {
       display: flex;
       align-items: center;
       gap: 0.8rem;
@@ -50,16 +46,6 @@ export const Container = styled.div`
       }
     }
 
-    .result {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      span {
-        font-size: 1.125rem;
-        color: #ffffff;
-      }
-    }
-
     @media (max-width: 480px) {
       div:first-child {
         flex-direction: column;
@@ -79,6 +65,10 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+
+  @media (max-width: 480px) {
+    grid-template-columns: auto;
+  }
 `;
 
 export const Warning = styled.div`
