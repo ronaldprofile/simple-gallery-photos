@@ -1,5 +1,5 @@
 import { IPhoto } from "../../types/Photo";
-import { Button } from "../Button";
+// import { Button } from "../Button";
 import { Container } from "./styles";
 
 interface IPhotosProps {
@@ -10,15 +10,18 @@ interface IPhotosProps {
 export function Photo({ photo, handleDeletePhoto }: IPhotosProps) {
   return (
     <Container>
-      <img src={photo.url} alt={photo.name} />
+      <img src={photo.url} alt={photo.name} className="photo" />
 
-      <Button
+      <img
+        src="/src/assets/close.svg"
+        alt="icon close"
+        className="icon-close"
+        title="Excluir foto"
         onClick={() => handleDeletePhoto(photo.name)}
-        background="#df2e2e"
-        color="#ffffff"
-      >
-        Remover foto
-      </Button>
+      />
+
+      {/* for mobile */}
+      {/* <Button>Remover foto</Button> */}
     </Container>
   );
 }
