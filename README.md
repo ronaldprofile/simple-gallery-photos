@@ -1,6 +1,6 @@
 <h1 align="center">Gallery Photos</h1>
 
-<img src="https://ik.imagekit.io/gczsuhmv3/avanz/screenshot-rocks_aMnIpE5M2L.png?updatedAt=1635007260610" alt="screenshot">
+<img src="https://ik.imagekit.io/gczsuhmv3/avanz/Storage_Photos/screenshot-update.png?updatedAt=1635288886735" alt="screenshot">
 
 ## 💻 Projeto
 
@@ -11,6 +11,10 @@ aplicação simples que faz upload de imagens para o storage do firebase.
 - ReactJS
 - Firebase
 - Typescript
+
+## :zap: Novidades
+
+- Fiz pequenas alterações no layout, antes cada imagem era acompanhada com um botão _remover foto_ e pra deixar algo mais suave retirei. Agora basta passar o mouse sobre a foto e um icone para excluir a foto vai aparecer.
 
 ## 😍 Detalhes
 
