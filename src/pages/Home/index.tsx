@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
+import produce from "immer";
 import { Button } from "../../components/Button";
 import { Photo } from "../../components/Photo";
 import { Spinner } from "../../components/Spinner";
@@ -52,6 +53,17 @@ export function Home() {
     getPhotos();
   }
 
+  function moveListItem(from: number, to: number) {
+    setPhotos(
+      produce(photos, draft => {
+        const dragged = draft[from];
+
+        draft.splice(from, 1);
+        draft.splice(to, 0, dragged);
+      })
+    );
+  }
+
   return (
     <Container>
       <h1>Minhas fotos</h1>
@@ -73,8 +85,14 @@ export function Home() {
 
       {photos.length > 0 && (
         <Grid>
-          {photos.map(photo => {
-            return <Photo key={photo.name} {...{ photo, handleDeletePhoto }} />;
+          {photos.map((photo, index) => {
+            return (
+              <Photo
+                key={photo.name}
+                indexPhoto={index}
+                {...{ photo, handleDeletePhoto, moveListItem }}
+              />
+            );
           })}
         </Grid>
       )}
