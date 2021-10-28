@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+interface IContainerProps {
+  isDragging: boolean;
+}
+
+export const Container = styled.div<IContainerProps>`
   max-width: 18.31rem;
   height: 100%;
   position: relative;
@@ -18,6 +22,25 @@ export const Container = styled.div`
     }
   }
 
+  ${props =>
+    props.isDragging &&
+    css`
+      &:hover {
+        .icon-close {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      border: 0.125rem dashed #ffffff;
+      background: transparent;
+      cursor: grabbing;
+
+      .photo {
+        opacity: 0;
+      }
+    `}
+
   .photo {
     height: 100%;
     width: 100%;
@@ -25,7 +48,6 @@ export const Container = styled.div`
 
     overflow: hidden;
     transition: transform 0.2s;
-    border-radius: 0.312rem;
   }
 
   .icon-close {
