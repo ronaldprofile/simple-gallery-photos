@@ -9,6 +9,7 @@ interface IPhotosProps {
   indexPhoto: number;
   handleDeletePhoto: (name: string) => void;
   moveListItem: (from: number, to: number) => void;
+  setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface IItemDraggedProps {
   id: string;
@@ -19,7 +20,8 @@ export function Photo({
   photo,
   indexPhoto,
   handleDeletePhoto,
-  moveListItem
+  moveListItem,
+  setIsModalActive
 }: IPhotosProps) {
   const refPhoto = useRef(null);
 
@@ -49,7 +51,11 @@ export function Photo({
 
   dragRef(dropRef(refPhoto));
   return (
-    <Container ref={refPhoto} isDragging={isDragging}>
+    <Container
+      ref={refPhoto}
+      isDragging={isDragging}
+      onClick={() => setIsModalActive(true)}
+    >
       <img src={photo.url} alt={photo.name} className="photo" />
 
       <img
