@@ -9,15 +9,27 @@ import { deletePhoto, getAllPhotos, sendFile } from "../../services/photos";
 import { IPhoto } from "../../types/Photo";
 
 import { Container, Grid, Warning } from "./styles";
+import { Modal } from "../../components/Modal";
 
 export function Home() {
   const [photos, setPhotos] = useState<IPhoto[]>([]);
+  const [isModalActive, setIsModalActive] = useState(false);
   const [animationLoadingIsActive, setAnimationLoadingIsActive] =
     useState(false);
 
   useEffect(() => {
     getPhotos();
+    getPhotosOnLocalStorage();
   }, []);
+
+  function getPhotosOnLocalStorage() {
+    const data = JSON.parse(localStorage.getItem("@gallery$photos")!);
+    if (data) setPhotos(data);
+  }
+
+  useEffect(() => {
+    localStorage.setItem("@gallery$photos", JSON.stringify(photos));
+  }, [photos]);
 
   async function getPhotos() {
     setAnimationLoadingIsActive(true);
@@ -90,7 +102,12 @@ export function Home() {
               <Photo
                 key={photo.name}
                 indexPhoto={index}
-                {...{ photo, handleDeletePhoto, moveListItem }}
+                {...{
+                  photo,
+                  handleDeletePhoto,
+                  moveListItem,
+                  setIsModalActive
+                }}
               />
             );
           })}
@@ -102,6 +119,8 @@ export function Home() {
           <p>comece adicionado sua primeira foto</p>
         </Warning>
       )}
+
+      {isModalActive && <Modal {...{ setIsModalActive }} />}
     </Container>
   );
 }
