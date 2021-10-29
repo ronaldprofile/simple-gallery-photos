@@ -18,10 +18,28 @@ export function Modal({ setIsModalActive }: IModalProps) {
           />
         </header>
         <GallerySlider>
-          {/* <img
-            src="https://firebasestorage.googleapis.com/v0/b/react-firestore-306e9.appspot.com/o/images%2Fc086a8b0-1aea-4d32-b31a-c344fe90aff3?alt=media&token=76b38bee-cc25-42fb-bcca-5cfb9c761be9"
-            alt=""
-          /> */}
+          <div className="btn">
+            <img
+              src="https://ik.imagekit.io/gczsuhmv3/avanz/Storage_Photos/arrow-next.svg?updatedAt=1635459984593"
+              alt="icon previous photo"
+              className="arrow"
+            />
+          </div>
+
+          <div className="full-image">
+            <img
+              src="https://images.unsplash.com/photo-1593642532454-e138e28a63f4?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2MHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              alt=""
+            />
+          </div>
+
+          <div className="btn">
+            <img
+              src="https://ik.imagekit.io/gczsuhmv3/avanz/Storage_Photos/arrow-previous.svg?updatedAt=1635459967273"
+              alt="icon arrow next photo"
+              className="arrow"
+            />
+          </div>
         </GallerySlider>
       </Content>
     </Container>

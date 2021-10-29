@@ -14,10 +14,11 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
+  height: 100%;
   padding: 0.875rem;
 
   header {
-    margin-bottom: 3.75rem;
+    height: 3.75rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,6 +29,7 @@ export const Content = styled.div`
 
     button {
       padding: 0.5rem 0.875rem;
+      transform: translate(-50%, 0);
     }
 
     img {
@@ -37,11 +39,44 @@ export const Content = styled.div`
 `;
 
 export const GallerySlider = styled.div`
-  /* width: 100%;
-  img {
-    margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
+  .full-image {
     width: 100%;
     height: 100%;
-  } */
+    padding: 0 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn {
+    height: 3.125rem;
+    width: 3.75rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #121214;
+
+    clip-path: circle();
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #8257e5;
+    }
+
+    img {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .arrow {
+    width: 1.125rem;
+  }
 `;
