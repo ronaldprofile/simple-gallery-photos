@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: min(90vw, 58.437rem);
@@ -60,11 +60,10 @@ export const Container = styled.div`
 `;
 
 export const Grid = styled.div`
-  margin-top: 4rem;
-
+  margin-top: 1.75rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.75rem;
 
   @media (max-width: 480px) {
     grid-template-columns: auto;
