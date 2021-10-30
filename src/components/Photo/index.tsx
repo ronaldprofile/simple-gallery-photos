@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import { IoResize, IoCloseOutline } from "react-icons/io5";
 import { IPhoto } from "../../types/Photo";
-// import { Button } from "../Button";
-import { Container } from "./styles";
 
+import { Container } from "./styles";
 interface IPhotosProps {
   photo: IPhoto;
   indexPhoto: number;
@@ -51,23 +51,22 @@ export function Photo({
 
   dragRef(dropRef(refPhoto));
   return (
-    <Container
-      ref={refPhoto}
-      isDragging={isDragging}
-      onClick={() => setIsModalActive(true)}
-    >
+    <Container ref={refPhoto} isDragging={isDragging}>
+      <header>
+        <IoResize
+          size={24}
+          title="expandir"
+          onClick={() => setIsModalActive(true)}
+        />
+
+        <IoCloseOutline
+          size={24}
+          title="excluir foto"
+          onClick={() => handleDeletePhoto(photo.name)}
+        />
+      </header>
+
       <img src={photo.url} alt={photo.name} className="photo" />
-
-      <img
-        src="https://ik.imagekit.io/gczsuhmv3/avanz/Storage_Photos/close_OjqIR2f9WL.svg?updatedAt=1635428950544"
-        alt="icon close"
-        className="icon-close"
-        title="Excluir foto"
-        onClick={() => handleDeletePhoto(photo.name)}
-      />
-
-      {/* for mobile */}
-      {/* <Button>Remover foto</Button> */}
     </Container>
   );
 }

@@ -5,17 +5,11 @@ interface IContainerProps {
 }
 
 export const Container = styled.div<IContainerProps>`
-  max-width: 18.31rem;
   height: 100%;
   position: relative;
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 
   &:hover {
-    .icon-close {
+    header {
       top: 0;
       opacity: 1;
       visibility: visible;
@@ -26,7 +20,7 @@ export const Container = styled.div<IContainerProps>`
     props.isDragging &&
     css`
       &:hover {
-        .icon-close {
+        header {
           opacity: 0;
           visibility: hidden;
         }
@@ -41,25 +35,39 @@ export const Container = styled.div<IContainerProps>`
       }
     `}
 
-  .photo {
-    height: 100%;
+  header {
     width: 100%;
-    object-fit: cover;
-
-    overflow: hidden;
-    transition: transform 0.2s;
-  }
-
-  .icon-close {
+    padding: 0.4rem;
     position: absolute;
     top: -0.625rem;
-    right: 0.625rem;
 
     opacity: 0;
     visibility: hidden;
 
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     transition: all 0.2s;
+
+    svg {
+      width: 2rem;
+      background-color: #121214;
+      color: #ffffff;
+
+      clip-path: circle();
+      cursor: pointer;
+      transition: all 0.2s;
+      &:hover {
+        filter: brightness(1.5);
+      }
+    }
+  }
+
+  .photo {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 
   @media (max-width: 480px) {
