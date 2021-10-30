@@ -1,3 +1,5 @@
+import { IoCloseOutline } from "react-icons/io5";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Container, Content, GallerySlider } from "./styles";
 
 interface IModalProps {
@@ -10,35 +12,25 @@ export function Modal({ setIsModalActive }: IModalProps) {
       <Content>
         <header>
           <strong className="fileName">screenshot.3829329.png</strong>
-          <button>Copiar url</button>
-          <img
-            src="https://ik.imagekit.io/gczsuhmv3/avanz/Storage_Photos/close_OjqIR2f9WL.svg?updatedAt=1635428950544"
-            alt="icon close"
+          <IoCloseOutline
+            size={32}
+            title="fechar modal"
             onClick={() => setIsModalActive(false)}
           />
         </header>
+
         <GallerySlider>
-          <div className="btn">
-            <img
-              src="https://ik.imagekit.io/gczsuhmv3/avanz/Storage_Photos/arrow-next.svg?updatedAt=1635459984593"
-              alt="icon previous photo"
-              className="arrow"
-            />
+          <div className="button">
+            <IoIosArrowBack size={24} />
           </div>
 
-          <div className="full-image">
-            <img
-              src="https://images.unsplash.com/photo-1593642532454-e138e28a63f4?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2MHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-              alt=""
-            />
-          </div>
+          <img
+            src="https://images.unsplash.com/photo-1593642532454-e138e28a63f4?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2MHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt=""
+          />
 
-          <div className="btn">
-            <img
-              src="https://ik.imagekit.io/gczsuhmv3/avanz/Storage_Photos/arrow-previous.svg?updatedAt=1635459967273"
-              alt="icon arrow next photo"
-              className="arrow"
-            />
+          <div className="button">
+            <IoIosArrowForward size={24} />
           </div>
         </GallerySlider>
       </Content>

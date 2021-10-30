@@ -13,12 +13,10 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 100%;
   height: 100%;
-  padding: 0.875rem;
+  padding: 0.75rem 2rem;
 
   header {
-    height: 3.75rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,12 +25,8 @@ export const Content = styled.div`
       color: #fff;
     }
 
-    button {
-      padding: 0.5rem 0.875rem;
-      transform: translate(-50%, 0);
-    }
-
-    img {
+    svg {
+      color: #ffffff;
       cursor: pointer;
     }
   }
@@ -44,16 +38,13 @@ export const GallerySlider = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  .full-image {
-    width: 100%;
-    height: 100%;
-    padding: 0 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
   }
 
-  .btn {
+  .button {
     height: 3.125rem;
     width: 3.75rem;
 
@@ -71,12 +62,10 @@ export const GallerySlider = styled.div`
       background-color: #8257e5;
     }
 
-    img {
-      transform: rotate(-90deg);
+    svg {
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.2s;
     }
-  }
-
-  .arrow {
-    width: 1.125rem;
   }
 `;
