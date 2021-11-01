@@ -64,10 +64,15 @@ export const Container = styled.div<IContainerProps>`
     }
   }
 
-  .photo {
-    height: 100%;
+  .slide {
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   @media (max-width: 480px) {

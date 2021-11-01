@@ -1,7 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { IoResize, IoCloseOutline } from "react-icons/io5";
+import { getMetaDataPhoto } from "../../services/photos";
+import { IMetadata } from "../../types/MetadataPhoto";
 import { IPhoto } from "../../types/Photo";
+import { Modal } from "../Modal";
 
 import { Container } from "./styles";
 interface IPhotosProps {
@@ -9,7 +12,6 @@ interface IPhotosProps {
   indexPhoto: number;
   handleDeletePhoto: (name: string) => void;
   moveListItem: (from: number, to: number) => void;
-  setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface IItemDraggedProps {
   id: string;
@@ -20,9 +22,10 @@ export function Photo({
   photo,
   indexPhoto,
   handleDeletePhoto,
-  moveListItem,
-  setIsModalActive
+  moveListItem
 }: IPhotosProps) {
+  const [metaDataPhoto, setMetaDataPhoto] = useState<IMetadata | undefined>();
+  const [isModalActive, setIsModalActive] = useState(false);
   const refPhoto = useRef(null);
 
   const [{ isDragging }, dragRef] = useDrag({
@@ -49,24 +52,46 @@ export function Photo({
     }
   });
 
+  async function handleResize(nameFile: string) {
+    setIsModalActive(true);
+    const result = await getMetaDataPhoto(nameFile);
+
+    const data: IMetadata = {
+      nameFile: result?.name,
+      contentType: result?.contentType,
+      size: result?.size,
+      timeCreated: result?.timeCreated
+    };
+
+    setMetaDataPhoto(data);
+  }
+
   dragRef(dropRef(refPhoto));
   return (
-    <Container ref={refPhoto} isDragging={isDragging}>
-      <header>
-        <IoResize
-          size={24}
-          title="expandir"
-          onClick={() => setIsModalActive(true)}
-        />
+    <>
+      <Container ref={refPhoto} isDragging={isDragging}>
+        <header>
+          <IoResize
+            size={24}
+            title="expandir"
+            onClick={() => handleResize(photo.name)}
+          />
 
-        <IoCloseOutline
-          size={24}
-          title="excluir foto"
-          onClick={() => handleDeletePhoto(photo.name)}
-        />
-      </header>
+          <IoCloseOutline
+            size={24}
+            title="excluir foto"
+            onClick={() => handleDeletePhoto(photo.name)}
+          />
+        </header>
 
-      <img src={photo.url} alt={photo.name} className="photo" />
-    </Container>
+        <div className="slide">
+          <img src={photo.url} alt={photo.name} className="photo" />
+        </div>
+      </Container>
+
+      {isModalActive && (
+        <Modal {...{ photo, metaDataPhoto, setIsModalActive }} />
+      )}
+    </>
   );
 }
