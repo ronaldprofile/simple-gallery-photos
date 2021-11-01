@@ -9,11 +9,9 @@ import { deletePhoto, getAllPhotos, sendFile } from "../../services/photos";
 import { IPhoto } from "../../types/Photo";
 
 import { Container, Grid, Warning } from "./styles";
-import { Modal } from "../../components/Modal";
 
 export function Home() {
   const [photos, setPhotos] = useState<IPhoto[]>([]);
-  const [isModalActive, setIsModalActive] = useState(false);
   const [animationLoadingIsActive, setAnimationLoadingIsActive] =
     useState(false);
 
@@ -105,8 +103,7 @@ export function Home() {
                 {...{
                   photo,
                   handleDeletePhoto,
-                  moveListItem,
-                  setIsModalActive
+                  moveListItem
                 }}
               />
             );
@@ -119,8 +116,6 @@ export function Home() {
           <p>comece adicionado sua primeira foto</p>
         </Warning>
       )}
-
-      {isModalActive && <Modal {...{ setIsModalActive }} />}
     </Container>
   );
 }
