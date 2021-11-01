@@ -4,7 +4,8 @@ import {
   listAll,
   getDownloadURL,
   uploadBytes,
-  deleteObject
+  deleteObject,
+  getMetadata
 } from "firebase/storage";
 
 import { v4 as createRandomIdentifier } from "uuid";
@@ -42,8 +43,19 @@ export async function sendFile(file: File) {
   }
 }
 
-export async function deletePhoto(name: string) {
-  const photoRef = ref(storage, `images/${name}`);
+export async function getMetaDataPhoto(nameFile: string) {
+  const photoRef = ref(storage, `images/${nameFile}`);
+
+  try {
+    const metadata = await getMetadata(photoRef);
+    return metadata;
+  } catch (error) {
+    if (error) console.log("Não conseguimos buscar os metadatas");
+  }
+}
+
+export async function deletePhoto(nameFile: string) {
+  const photoRef = ref(storage, `images/${nameFile}`);
 
   await deleteObject(photoRef);
 }

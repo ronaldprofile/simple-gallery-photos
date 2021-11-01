@@ -1,5 +1,5 @@
 import firebase from "firebase/compat/app";
-import { getStorage } from "firebase/storage";
+import "firebase/compat/storage";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_KEY,
@@ -11,6 +11,6 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
-const storage = getStorage(app);
+const storage = firebase.storage(app);
 
 export { firebase, storage };
