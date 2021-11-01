@@ -15,6 +15,10 @@ aplicação simples que faz upload de imagens para o storage do firebase.
 ## :zap: Novidades
 
 - Fiz pequenas alterações no layout, antes cada imagem era acompanhada com um botão _remover foto_ e pra deixar algo mais suave retirei. Agora basta passar o mouse sobre a foto e um icone para excluir a foto vai aparecer.
+- Quando passar o mouse sobre a foto, também vai aparecer outro icone para expandir a visualização da imagem.
+- Quando você estiver com a imagem expandida, passe o mouse sobre a imagem para ver mais detalhes como: **name, size e contentType**. 
+
+- Fazer um slider com todas as imagens da galeria (Em breve) 💥💥
 
 ## 😍 Detalhes
 
